@@ -1,25 +1,56 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="false">
   <ion-toolbar>
     <ion-title>
-      Inbox
+      User Search
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+  <div class="search-block">
+    <div class="title-block">
+      <ion-input (keyup.enter)="onEnter()" (input)="valueChange($event)" [value]="searchString" class="search-text"
+        placeholder="Start typing by name or email..."></ion-input>
+      <ion-icon *ngIf="searchString.length" (click)="clearText()" class="cross-icon" slot="icon-only"
+        name="close-circle-outline"></ion-icon>
+      <ion-button class="page-button button-margin" [disabled]="!searchString || !searchString.length"
+        (click)="onEnter()">Search</ion-button>
+      <!-- <ion-icon (click)="navToHelp()" class="info-icon" slot="icon-only" src="assets/icons/General/Info_theme_blue.svg"></ion-icon> -->
+    </div>
+  </div>
+  <div class="counter-text" *ngIf="dataField.length">
+     Page {{currentPage}}/{{pages}}
+  </div>
+
+
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">
-        Inbox
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-list>
-    <app-message *ngFor="let message of getMessages()" [message]="message"></app-message>
+
+
+
+  <div *ngIf="!dataField.length" class="centered">
+    <div>
+      <div class="missing-text">
+        Enter either username or email address and hit search!!!
+      </div>
+    </div>
+  </div>
+
+  <ion-list class="list-class">
+    <app-message *ngFor="let message of displayField" [message]="message"></app-message>
   </ion-list>
+
+
 </ion-content>
+
+
+<ion-footer no-border transparent *ngIf="dataField.length > 6">
+  <ion-toolbar class="footer-toolbar">
+    <ion-icon [hidden] = "currentPage === 1" name="chevron-back-outline" class="next-icon" slot="start" (click)="prevPage()"></ion-icon>
+    <ion-label [hidden] = "currentPage === 1" slot="start" class="label-class" (click)="prevPage()">PREVIOUS PAGE</ion-label>
+    <ion-label [hidden] = "currentPage === pages"slot="end" class="label-class" (click)="nextPage()">NEXT PAGE</ion-label>
+    <ion-icon [hidden] = "currentPage === pages" name="chevron-forward-outline" class="next-icon" slot="end" (click)="nextPage()"></ion-icon>
+  </ion-toolbar>
+</ion-footer>

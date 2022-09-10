@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "WorkSans";
+  font-style: normal;
+  src: url(/assets/fonts/worksans/WorkSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: "WorkSans-Regular";
+  font-style: normal;
+  src: url(/assets/fonts/worksans/WorkSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: "WorkSans-Bold";
+  font-style: normal;
+  src: url(/assets/fonts/worksans/WorkSans-Bold.ttf);
+}
+
+@font-face {
+  font-family: "WorkSans-SemiBold";
+  font-style: normal;
+  src: url(/assets/fonts/worksans/WorkSans-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: "WorkSans-Medium";
+  font-style: normal;
+  src: url(/assets/fonts/worksans/WorkSans-Medium.ttf);
+}
+
+@font-face {
+  font-family: "WorkSans-ExtraBold";
+  font-style: normal;
+  src: url(/assets/fonts/worksans/WorkSans-ExtraBold.ttf);
+}

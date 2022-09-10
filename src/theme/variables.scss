@@ -74,6 +74,14 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  --ion-font-family: 'WorkSans-Regular', 'SourceSansPro-Regular';
+  --ion-default-font: 'WorkSans-Regular', 'SourceSansPro-Regular';
+  --ion-font-extrabold: WorkSans-ExtraBold, SourceSansPro-ExtraBold;
+  --ion-font-bold: WorkSans-Bold, SourceSansPro-Bold;
+  --ion-font-semibold: WorkSans-SemiBold, SourceSansPro-SemiBold;
+  --ion-font-medium: WorkSans-Medium, SourceSansPro-Medium;
+  --ion-font-regular: WorkSans-Regular, SourceSansPro-Regular;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -83,6 +91,7 @@
    */
 
   body {
+    --ion-background-color:#ffff;
     --ion-color-primary: #428cff;
     --ion-color-primary-rgb: 66,140,255;
     --ion-color-primary-contrast: #ffffff;

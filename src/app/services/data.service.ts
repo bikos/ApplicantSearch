@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Octokit } from 'octokit';
+import { environment } from 'src/environments/environment';
 
 export interface Message {
   fromName: string;
@@ -71,6 +73,11 @@ export class DataService {
     }
   ];
 
+
+  private octokit = new Octokit({
+    auth: environment.token
+  });
+
   constructor() { }
 
   public getMessages(): Message[] {
@@ -79,5 +86,33 @@ export class DataService {
 
   public getMessageById(id: number): Message {
     return this.messages[id];
+  }
+
+  public async getuserinfo(sString: string){
+    try {
+      // const result = await this.octokit.request("GET /repos/{owner}/{repo}/issues", {
+      //     owner: "octocat",
+      //     repo: "Spoon-Knife",
+      //   });
+
+      // let's try getting uers
+      // const result = await this.octokit.request('GET /users/{user}', {
+      //   user: 'bikos'
+      // })
+
+      return this.octokit.request('GET /search/users', {q: `${sString}+in:user`});
+
+
+      // get repos from : "https://api.github.com/users/bikos/repos"
+
+
+      // const titleAndAuthor = result.data.map(issue => {title: issue.title, authorID: issue.user.id})
+
+
+
+    } catch (error) {
+      // console.log(`Error! Status: ${error.status}. Message: ${error.response.data.message}`)
+      console.log(error);
+    }
   }
 }
