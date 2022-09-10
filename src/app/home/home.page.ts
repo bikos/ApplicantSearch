@@ -11,7 +11,7 @@ export class HomePage {
   public searchString = '';
 
   public dataField: any = [];
-  public defaultText = 'Enter either username or email address and hit search or press Enter!!!';
+  public defaultText = 'Enter either github username or email address and hit search or press Enter!!!';
 
   public displayField: any = [];
 
@@ -63,15 +63,7 @@ export class HomePage {
     this.displayField = [];
     this.pages = 0;
     this.currentPage = 0;
-    this.defaultText = 'Enter either username or email address and hit search or press Enter!!!';
-  //   this.showData = true;
-  //   this.noData = false;
-  //   this.learnFlag = false;
-  //   if (this.showCloud) {
-  //   return this.showWordCloud();
-  // } else {
-  //   this.initTableService();
-  // }
+    this.defaultText = 'Enter either github username or email address and hit search or press Enter!!!';
 }
 
 
