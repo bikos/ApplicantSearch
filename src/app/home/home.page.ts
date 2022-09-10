@@ -11,6 +11,7 @@ export class HomePage {
   public searchString = '';
 
   public dataField: any = [];
+  public defaultText = 'Enter either username or email address and hit search or press Enter!!!';
 
   public displayField: any = [];
 
@@ -22,13 +23,16 @@ export class HomePage {
 
   async onEnter() {
     try {
-      const data: any = await this.data.getuserinfo(this.searchString);
+      const trimString = this.searchString.trim();
+      const data: any = await this.data.getuserinfo(trimString);
       this.dataField = data.data.items;
       const numberPages = this.dataField.length/6;
       this.pages = Math.ceil(numberPages);
       this.currentPage = 1;
       this.getData(this.currentPage);
-      console.log(this.dataField);
+      if(!this.dataField.length){
+        this.defaultText = 'No matching data Found!';
+      }
     } catch (error) {
       console.log(error);
     }
@@ -59,6 +63,7 @@ export class HomePage {
     this.displayField = [];
     this.pages = 0;
     this.currentPage = 0;
+    this.defaultText = 'Enter either username or email address and hit search or press Enter!!!';
   //   this.showData = true;
   //   this.noData = false;
   //   this.learnFlag = false;

@@ -88,6 +88,18 @@ export class DataService {
     return this.messages[id];
   }
 
+
+  public async getUserByLogin(uname){
+    try{
+      return this.octokit.request('GET /users/{username}', {
+        username: uname
+      });
+
+    }catch(error){
+      console.log(error);
+    }
+  }
+
   public async getuserinfo(sString: string){
     try {
       // const result = await this.octokit.request("GET /repos/{owner}/{repo}/issues", {

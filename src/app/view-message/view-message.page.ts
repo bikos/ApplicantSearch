@@ -8,16 +8,28 @@ import { DataService, Message } from '../services/data.service';
   styleUrls: ['./view-message.page.scss'],
 })
 export class ViewMessagePage implements OnInit {
-  public message: Message;
+  public message: any;
+  public countupOptions: any = {
+    duration: 3,
+    scrollSpyDelay: 2,
+    reanimateOnClick: false
+  };
+  private id: string;
 
   constructor(
     private data: DataService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.message = this.data.getMessageById(parseInt(id, 10));
+
+  }
+
+  async ionViewWillEnter() {
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    const data = await this.data.getUserByLogin(this.id);
+    this.message = data.data;
+    this.message.github_repo_url = 'https://www.github.com/'+this.id+'?tab=repositories';
   }
 
   getBackButtonText() {
